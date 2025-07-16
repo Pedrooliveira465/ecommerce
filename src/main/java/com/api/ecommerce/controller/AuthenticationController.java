@@ -1,5 +1,6 @@
 package com.api.ecommerce.controller;
 
+import com.api.ecommerce.config.SecurityConfig;
 import com.api.ecommerce.models.User;
 import com.api.ecommerce.models.dto.AuthenticationRequestDTO;
 import com.api.ecommerce.models.dto.TokenResponseDTO;
