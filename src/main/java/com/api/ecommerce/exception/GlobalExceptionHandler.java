@@ -1,6 +1,12 @@
 package com.api.ecommerce.exception;
 
-import com.api.ecommerce.models.dto.ApiErrorResponse;
+import com.api.ecommerce.global.dto.ApiErrorResponseDTO;
+import com.api.ecommerce.modules.order.exceptions.InsufficientStockException;
+import com.api.ecommerce.modules.order.exceptions.OrderAlreadyPaidException;
+import com.api.ecommerce.modules.order.exceptions.OrderNotFoundException;
+import com.api.ecommerce.modules.product.exception.ProductNotFoundException;
+import com.api.ecommerce.modules.user.exceptions.EmailAlreadyRegisteredException;
+import com.api.ecommerce.modules.user.exceptions.UserNotAuthenticatedException;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -19,24 +25,24 @@ public class GlobalExceptionHandler {
             InsufficientStockException.class,
             EmailAlreadyRegisteredException.class
     })
-    public ResponseEntity<ApiErrorResponse> handleConflict(RuntimeException ex, HttpServletRequest request) {
+    public ResponseEntity<ApiErrorResponseDTO> handleConflict(RuntimeException ex, HttpServletRequest request) {
         return buildResponse(ex, request, HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler({
             OrderAlreadyPaidException.class
     })
-    public ResponseEntity<ApiErrorResponse> handleBadRequest(RuntimeException ex, HttpServletRequest request) {
+    public ResponseEntity<ApiErrorResponseDTO> handleBadRequest(RuntimeException ex, HttpServletRequest request) {
         return buildResponse(ex, request, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UserNotAuthenticatedException.class)
-    public ResponseEntity<ApiErrorResponse> handleUnauthorized(UserNotAuthenticatedException ex, HttpServletRequest request) {
+    public ResponseEntity<ApiErrorResponseDTO> handleUnauthorized(UserNotAuthenticatedException ex, HttpServletRequest request) {
         return buildResponse(ex, request, HttpStatus.UNAUTHORIZED);
     }
 
     @ExceptionHandler(AccessDeniedException.class)
-    public ResponseEntity<ApiErrorResponse> handleAccessDenied(AccessDeniedException ex, HttpServletRequest request) {
+    public ResponseEntity<ApiErrorResponseDTO> handleAccessDenied(AccessDeniedException ex, HttpServletRequest request) {
         return buildResponse("Access denied.", request, HttpStatus.FORBIDDEN);
     }
 
@@ -45,12 +51,12 @@ public class GlobalExceptionHandler {
             OrderNotFoundException.class,
             ProductNotFoundException.class
     })
-    public ResponseEntity<ApiErrorResponse> handleNotFound(RuntimeException ex, HttpServletRequest request) {
+    public ResponseEntity<ApiErrorResponseDTO> handleNotFound(RuntimeException ex, HttpServletRequest request) {
         return buildResponse(ex, request, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
-    public ResponseEntity<ApiErrorResponse> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request) {
+    public ResponseEntity<ApiErrorResponseDTO> handleValidation(MethodArgumentNotValidException ex, HttpServletRequest request) {
         StringBuilder message = new StringBuilder("Validation failed: ");
         ex.getBindingResult().getFieldErrors().forEach(error -> message.append(error.getField())
                 .append(" - ")
@@ -61,17 +67,17 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<ApiErrorResponse> handleGeneric(Exception ex, HttpServletRequest request) {
+    public ResponseEntity<ApiErrorResponseDTO> handleGeneric(Exception ex, HttpServletRequest request) {
         ex.printStackTrace();
         return buildResponse("Internal Server Error.", request, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
-    private ResponseEntity<ApiErrorResponse> buildResponse(Exception ex, HttpServletRequest request, HttpStatus status) {
+    private ResponseEntity<ApiErrorResponseDTO> buildResponse(Exception ex, HttpServletRequest request, HttpStatus status) {
         return buildResponse(ex.getMessage(), request, status);
     }
 
-    private ResponseEntity<ApiErrorResponse> buildResponse(String message, HttpServletRequest request, HttpStatus status) {
-        ApiErrorResponse error = new ApiErrorResponse(
+    private ResponseEntity<ApiErrorResponseDTO> buildResponse(String message, HttpServletRequest request, HttpStatus status) {
+        ApiErrorResponseDTO error = new ApiErrorResponseDTO(
                 LocalDateTime.now().toString(),
                 status.value(),
                 status.getReasonPhrase(),
