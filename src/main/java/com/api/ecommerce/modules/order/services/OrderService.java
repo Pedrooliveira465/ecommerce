@@ -77,7 +77,7 @@ public class OrderService {
                 .collect(Collectors.toList());
     }
 
-    @Transactional
+    @Transactional(noRollbackFor = InsufficientStockException.class)
     public OrderResponseDTO payOrderForAuthenticatedUser(UUID orderId) {
         User user = getAuthenticatedUser();
 
