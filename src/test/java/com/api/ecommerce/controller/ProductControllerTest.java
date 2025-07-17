@@ -1,10 +1,11 @@
 package com.api.ecommerce.controller;
 
-import com.api.ecommerce.models.dto.CreateProductRequestDTO;
-import com.api.ecommerce.models.dto.ProductDTO;
-import com.api.ecommerce.models.dto.UpdateProductRequestDTO;
-import com.api.ecommerce.service.JwtService;
-import com.api.ecommerce.service.ProductService;
+import com.api.ecommerce.modules.product.dtos.CreateProductRequestDTO;
+import com.api.ecommerce.modules.product.dtos.ProductDTO;
+import com.api.ecommerce.modules.product.dtos.UpdateProductRequestDTO;
+import com.api.ecommerce.modules.product.controller.ProductController;
+import com.api.ecommerce.modules.user.services.JwtService;
+import com.api.ecommerce.modules.product.service.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -1,9 +1,10 @@
 package com.api.ecommerce.controller;
 
-import com.api.ecommerce.models.dto.AverageTicketDTO;
-import com.api.ecommerce.models.dto.TopCustomerDTO;
-import com.api.ecommerce.service.JwtService;
-import com.api.ecommerce.service.ReportService;
+import com.api.ecommerce.modules.report.dtos.AverageTicketDTO;
+import com.api.ecommerce.modules.report.dtos.TopCustomerDTO;
+import com.api.ecommerce.modules.report.controller.ReportController;
+import com.api.ecommerce.modules.user.services.JwtService;
+import com.api.ecommerce.modules.report.services.ReportService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

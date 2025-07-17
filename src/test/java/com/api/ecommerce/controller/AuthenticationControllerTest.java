@@ -1,11 +1,12 @@
 package com.api.ecommerce.controller;
 
-import com.api.ecommerce.models.User;
-import com.api.ecommerce.models.dto.AuthenticationRequestDTO;
-import com.api.ecommerce.models.dto.UserRequestDTO;
-import com.api.ecommerce.models.enums.Role;
-import com.api.ecommerce.service.AuthenticationService;
-import com.api.ecommerce.service.JwtService;
+import com.api.ecommerce.modules.user.entities.User;
+import com.api.ecommerce.modules.user.dtos.AuthenticationRequestDTO;
+import com.api.ecommerce.modules.user.dtos.UserRequestDTO;
+import com.api.ecommerce.modules.user.enums.Role;
+import com.api.ecommerce.modules.user.controllers.AuthenticationController;
+import com.api.ecommerce.modules.user.services.AuthenticationService;
+import com.api.ecommerce.modules.user.services.JwtService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

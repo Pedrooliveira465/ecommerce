@@ -1,12 +1,13 @@
 package com.api.ecommerce.controller;
 
-import com.api.ecommerce.models.dto.OrderItemRequestDTO;
-import com.api.ecommerce.models.dto.OrderItemResponseDTO;
-import com.api.ecommerce.models.dto.OrderRequestDTO;
-import com.api.ecommerce.models.dto.OrderResponseDTO;
-import com.api.ecommerce.models.enums.OrderStatus;
-import com.api.ecommerce.service.JwtService;
-import com.api.ecommerce.service.OrderService;
+import com.api.ecommerce.modules.order.dtos.OrderItemRequestDTO;
+import com.api.ecommerce.modules.order.dtos.OrderItemResponseDTO;
+import com.api.ecommerce.modules.order.dtos.OrderRequestDTO;
+import com.api.ecommerce.modules.order.dtos.OrderResponseDTO;
+import com.api.ecommerce.modules.order.enums.OrderStatus;
+import com.api.ecommerce.modules.order.controller.OrderController;
+import com.api.ecommerce.modules.user.services.JwtService;
+import com.api.ecommerce.modules.order.services.OrderService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
