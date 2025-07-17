@@ -1,6 +1,6 @@
 package com.api.ecommerce.filter;
 
-import com.api.ecommerce.service.JwtService;
+import com.api.ecommerce.modules.user.services.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
