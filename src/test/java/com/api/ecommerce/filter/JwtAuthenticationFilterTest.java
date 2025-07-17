@@ -1,6 +1,6 @@
 package com.api.ecommerce.filter;
 
-import com.api.ecommerce.service.JwtService;
+import com.api.ecommerce.modules.user.services.JwtService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
